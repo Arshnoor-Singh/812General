@@ -199,8 +199,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 503560963}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.410425, y: 3.6531832, z: -0.92502594}
+  m_LocalRotation: {x: 0.08292447, y: 0, z: 0, w: 0.99655586}
+  m_LocalPosition: {x: -3.0404253, y: 3.1031833, z: -1.565026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -374,6 +374,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1268486415}
   - component: {fileID: 1268486414}
+  - component: {fileID: 1268486416}
   m_Layer: 0
   m_Name: CM vcam1
   m_TagString: Untagged
@@ -423,14 +424,30 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1268486413}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.410425, y: 3.6531832, z: -0.92502594}
+  m_LocalRotation: {x: 0.08292447, y: 0, z: 0, w: 0.99655586}
+  m_LocalPosition: {x: -3.0404253, y: 3.1031833, z: -1.565026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1973565967}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 26.334002, y: 63.571003, z: 0}
+--- !u!114 &1268486416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268486413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb7194dc27b9df64c8beca7482ee8e0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerIndex: -1
+  AutoEnableInputs: 1
+  XYAxis: {fileID: 7725294630485386870, guid: 0d837ad3b07b8dd42a9ebf03df5dcfa8, type: 3}
+  ZAxis: {fileID: 7725294630485386870, guid: 0d837ad3b07b8dd42a9ebf03df5dcfa8, type: 3}
 --- !u!1 &1635979321
 GameObject:
   m_ObjectHideFlags: 0
@@ -631,8 +648,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa2a3c8a05ef604f8be8eb8c01cca43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerVirtualCamera: {fileID: 0}
+  playerVirtualCamera: {fileID: 1268486414}
   movementSpeed: 10
+  interactionDistance: 10
 --- !u!114 &1655798069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -674,6 +692,25 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 03998d34-1ed5-4b85-8a76-9189c45781c3
     m_ActionName: Walking/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6c97cf73-7e3d-476b-91a2-7219f380ba06
+    m_ActionName: Walking/MouseLook[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1655798068}
+        m_MethodName: IAInteract
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0ad63d76-0d54-40ad-8c00-5249f931b14f
+    m_ActionName: Walking/Interact[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Walking
@@ -690,6 +727,7 @@ GameObject:
   - component: {fileID: 1973565967}
   - component: {fileID: 1973565970}
   - component: {fileID: 1973565968}
+  - component: {fileID: 1973565969}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -720,19 +758,63 @@ MonoBehaviour:
   m_GameObject: {fileID: 1973565966}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd6043bde05a7fc4cba197d06915c1e3, type: 3}
+  m_Script: {fileID: 11500000, guid: 9384ab8608cdc3d479fe89cd51eed48f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damping: {x: 0.1, y: 0.5, z: 0.3}
-  ShoulderOffset: {x: 1.37, y: 0.4, z: 0}
-  VerticalArmLength: 0.76
-  CameraSide: 0
-  CameraDistance: 3
-  CameraCollisionFilter:
-    serializedVersion: 2
-    m_Bits: 0
-  IgnoreTag: 
-  CameraRadius: 0.2
+  m_BindingMode: 1
+  m_FollowOffset: {x: 0, y: 0.61, z: -3.64}
+  m_XDamping: 0.2
+  m_YDamping: 0.2
+  m_ZDamping: 0.2
+  m_AngularDampingMode: 0
+  m_PitchDamping: 0
+  m_YawDamping: 0
+  m_RollDamping: 0
+  m_AngularDamping: 0
+  m_Heading:
+    m_Definition: 2
+    m_VelocityFilterStrength: 4
+    m_Bias: 0
+  m_RecenterToTargetHeading:
+    m_enabled: 1
+    m_WaitTime: 0
+    m_RecenteringTime: 0.5
+    m_LegacyHeadingDefinition: -1
+    m_LegacyVelocityFilterStrength: -1
+  m_XAxis:
+    Value: 0
+    m_SpeedMode: 0
+    m_MaxSpeed: 300
+    m_AccelTime: 0.1
+    m_DecelTime: 0.1
+    m_InputAxisName: Mouse X
+    m_InputAxisValue: 0
+    m_InvertInput: 1
+    m_MinValue: -180
+    m_MaxValue: 180
+    m_Wrap: 1
+    m_Recentering:
+      m_enabled: 0
+      m_WaitTime: 1
+      m_RecenteringTime: 2
+      m_LegacyHeadingDefinition: -1
+      m_LegacyVelocityFilterStrength: -1
+  m_LegacyRadius: 3.4028235e+38
+  m_LegacyHeightOffset: 3.4028235e+38
+  m_LegacyHeadingBias: 3.4028235e+38
+  m_HeadingIsSlave: 0
+--- !u!114 &1973565969
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973565966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e8b78ac948f05a46a6d8339a503172b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1973565970
 MonoBehaviour:
   m_ObjectHideFlags: 3
